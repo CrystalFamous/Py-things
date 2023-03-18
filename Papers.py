@@ -1,11 +1,12 @@
 import webbrowser
 
+
+
 Paper = ["https://papers.gceguide.com/A%20Levels/Accounting%20(9706)/"
         ,"https://papers.gceguide.com/A%20Levels/Business%20(9609)/"
         ,"https://papers.gceguide.com/A%20Levels/Computer%20Science%20(for%20final%20examination%20in%202021)%20(9608)/"
         ,"https://papers.gceguide.com/A%20Levels/Computer%20Science%20(for%20first%20examination%20in%202021)%20(9618)/"
         ,"https://papers.gceguide.com/A%20Levels/Economics%20(9708)/"]
-
 
 
 
@@ -19,7 +20,10 @@ def acc():
     paper = input()
     print("qp or ms or both")
     choice = input()
-    if choice == "qp" or choice == "ms":
+    if choice == "qp" or choice == "1":
+        Link = Paper[0]+ year+"/9706_"+ month + mid+"_"+ choice+"_"+paper+".pdf"
+        webbrowser.open_new(str(Link))
+    elif choice == "ms" or choice == "2":
         Link = Paper[0]+ year+"/9706_"+ month + mid+"_"+ choice+"_"+paper+".pdf"
         webbrowser.open_new(str(Link))
     else:
@@ -28,6 +32,7 @@ def acc():
         webbrowser.open_new(str(Link2))
         webbrowser.open_new(str(Link3))
     repeat()
+
 
 def bus():
     print("Which year? 2016-2022")
@@ -39,15 +44,18 @@ def bus():
     paper = input()
     print("qp or ms or both")
     choice = input()
-    if choice == "qp" or choice == "ms":
+    if choice == "qp" or choice == "1":
+        Link = Paper[1]+ year+"/9609_"+ month + mid+"_"+ choice+"_"+paper+".pdf"
+        webbrowser.open_new(str(Link))
+    elif choice == "ms" or choice == "2":
         Link = Paper[1]+ year+"/9609_"+ month + mid+"_"+ choice+"_"+paper+".pdf"
         webbrowser.open_new(str(Link))
     else:
-        Link2 =  Paper[1]+ year+"/9609_"+ month + mid+"_qp_"+paper+".pdf"
-        Link3 =  Paper[1]+ year+"/9609_"+ month + mid+"_ms_"+paper+".pdf"
+        Link2 = Paper[1]+ year+"/9609_"+ month + mid+"_qp_"+paper+".pdf"
+        Link3 = Paper[1]+ year+"/9609_"+ month + mid+"_ms_"+paper+".pdf"
         webbrowser.open_new(str(Link2))
         webbrowser.open_new(str(Link3))
-    repeat()
+    
 
 def cs():
     i=0
@@ -91,7 +99,10 @@ def eco():
     paper = input()
     print("qp or ms or both")
     choice = input()
-    if choice == "qp" or choice == "ms":
+    if choice == "qp" or choice == "1":
+        Link = Paper[4]+ year+"/9708_"+ month + mid+"_"+ choice+"_"+paper+".pdf"
+        webbrowser.open_new(str(Link))
+    elif choice == "ms" or choice == "2":
         Link = Paper[4]+ year+"/9708_"+ month + mid+"_"+ choice+"_"+paper+".pdf"
         webbrowser.open_new(str(Link))
     else:
@@ -102,35 +113,26 @@ def eco():
     repeat()
 
 
+
 def main():
-    print("Which subject do you want?")
-    print("Acc,Bus,Eco,Cs")
+    print("Which subject do you want?\nAcc,Bus,Eco,Cs")
     sub = input()
-    if sub == "Acc" or sub == "acc" or sub == "ACC" or sub == "1" :
+    if sub == "Acc" or sub == "acc" or sub == "ACC" or sub == "1" or sub == "ACCOUNTING" or sub == "Accounting" or sub == "accounting":
         acc()
-    if sub == "Bus" or sub == "bus" or sub == "BUS" or sub == "2" :
+    elif sub == "Bus" or sub == "bus" or sub == "BUS" or sub == "2" or sub == "BUSINESS" or sub == "Business" or sub == "business":
         bus()
-    if sub == "Eco" or sub == "eco" or sub == "ECO" or sub == "3":
+    elif sub == "Eco" or sub == "eco" or sub == "ECO" or sub == "3"or sub == "ECONOMICS" or sub == "Economics" or sub == "economics":
         eco()
-    if sub == "Cs" or sub == "cs" or sub == "CS" or sub == "4":
+    elif sub == "Cs" or sub == "cs" or sub == "CS" or sub == "4"or sub == "COMPUTERSCIENCE" or\
+    sub == "Computerscience" or sub == "computerscience" or sub == "computer science":
         cs()
     
 def repeat():
     print("Do you want to search again?")
     reply = input()
     if reply == "yes" or reply == "y":
-        main() 
-        
+        main()
+
 
 main()
 
-
-
-
-
-
-
-# query = str(x)
-
-# for url in search(query):
-#     print(url)
