@@ -1,0 +1,35 @@
+import keyboard as key
+import pyautogui as pag
+import webbrowser as wb
+import time
+import pyperclip
+import re
+wb.open_new_tab("https://rewards.bing.com/")
+time.sleep(3)
+key.press_and_release('shift+ctrl+j')
+time.sleep(1)
+pag.doubleClick(1064,269)
+with open('file.txt', 'r') as file:
+    text = file.read()
+    pyperclip.copy(text)
+file.close()
+key.press_and_release('ctrl+v')
+key.press('enter')
+time.sleep(0.3)
+pag.rightClick()
+pag.leftClick(1076,340)
+time.sleep(0.3)
+pag.write("file.log")
+key.press('enter')
+time.sleep(0.3)
+key.press('left')
+key.press('enter')
+time.sleep(3)
+with open('file.log', 'r') as file:
+    text = file.read()
+    links = re.findall(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', text)
+for link in links:
+    key.press_and_release('ctrl+w')
+    wb.open_new_tab(link)
+    time.sleep(0.5)
+key.press_and_release('ctrl+w')
