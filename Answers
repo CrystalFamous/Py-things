@@ -1,0 +1,121 @@
+
+class Card:
+    #Number as integer
+    #Colour as string
+    def __init__(self, Number=None, Colour=None):
+        self.__Number = Number
+        self.__Colour = Colour
+    def GetNumber(self):
+        return self.__Number
+    def GetColour(self):
+        return self.__Colour
+
+
+class Hand:
+    #FirstCard as integer
+    #NumberCards as integer
+    #Cards[10] as Card
+    def __init__(self, Card1,Card2,Card3,Card4,Card5):
+        self.__Cards = []
+        self.__Cards.append(Card1)
+        self.__Cards.append(Card2)
+        self.__Cards.append(Card3)
+        self.__Cards.append(Card4)
+        self.__Cards.append(Card5)
+        FirstCard = 0
+        NumberCards = 5
+    def GetCard(self,i):
+        return self.__Cards[i]
+
+def CalculateValue(PlayerHand):
+    Score = 0
+    for i in range(5):
+        CurrentCard = PlayerHand.GetCard(i)
+        Score = Score + CurrentCard.GetNumber()
+        Colour = CurrentCard.GetColour()
+        if Colour == "Red":
+            Score = Score + 5
+        elif Colour == "Blue":
+            Score = Score + 10
+        elif Colour == "Yellow":
+            Score = Score + 15
+    return Score
+OneRed = Card(1,"Red")
+TwoRed = Card(2,"Red")
+ThreeRed = Card(3,"Red")
+FourRed = Card(4,"Red")
+FiveRed = Card(5,"Red")
+OneBlue = Card(1,"Blue") 
+TwoBlue = Card(2,"Blue")
+ThreeBlue = Card(3,"Blue")
+FourBlue = Card(4,"Blue")
+FiveBlue = Card(5,"Blue")
+OneYellow = Card(1,"Yellow")
+TwoYellow = Card(2,"Yellow")
+ThreeYellow = Card(3,"Yellow")
+FourYellow = Card(4,"Yellow")
+FiveYellow = Card(5,"Yellow")
+
+PlayerOne = Hand(OneRed,TwoRed,ThreeRed,FourRed,OneYellow)
+PlayerTwo = Hand(TwoYellow,ThreeYellow,FourYellow,FiveYellow,OneBlue)
+Score1 = CalculateValue(PlayerOne)
+Score2 = CalculateValue(PlayerTwo)
+if Score1 > Score2 :
+    print(f"PlayerOne has the highest score of {Score1}")
+else:
+    print(f"PlayerTwo has the highest score of {Score2}")
+
+
+
+
+class Picture:
+    def __init__(self,Description=None,Width=None,Height=None,FrameColour=None):
+        self.__Description = Description #string
+        self.__Width = int(Width) #integer
+        self.__Height = int(Height) #integer
+        self.__FrameColour = FrameColour #string
+
+    def GetDescription(self):
+        return self.__Description
+    def GetHeight(self):
+        return self.__Height
+    def GetWidth(self):
+        return self.__Width
+    def GetColour(self):
+        return self.__FrameColour
+    def SetDescription(self,NewDesc):
+        self.__Description = NewDesc
+def ReadData(Array):
+    Counter = 0
+    filename = "Pictures.txt"
+    try:
+        file = open(filename,"r")
+        Description = (file.readline()).strip().lower()
+        while Description != "":
+            Width = int((file.readline()).strip())
+            Height = int((file.readline()).strip())
+            Frame = (file.readline()).strip().lower()
+            Array[Counter] = Picture(Description,Width,Height,Frame)
+            Description = (file.readline()).strip().lower()
+            Counter += 1
+        file.close()
+    except IOError:
+        print("file cant be found")
+    
+    return Counter,Array
+
+
+Array = []
+for i in range(100):
+    Array.append(Picture("",0,0,""))
+Count,Array = ReadData(Array)
+
+colour = (str(input("Enter colour: "))).lower()
+width = int(input("Enter max width: "))
+height = int(input("Enter max height: "))
+for i in range(Count):
+    if Array[i].GetColour() == colour:
+        if Array[i].GetWidth() <= width:
+            if Array[i].GetHeight() <= height:
+                print("Matches found")
+                print(f"{Array[i].GetDescription()} {Array[i].GetWidth()} {Array[i].GetHeight()}")
