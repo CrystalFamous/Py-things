@@ -1,5 +1,5 @@
 import webbrowser
-
+#9618_w21_qp_42 9618_w22_qp_41 -- 9608_s21_qp_42  9608_w20_qp_42  9608_w16_qp_42
 #Settings
 Close = True
 Extract3 = False #may/june/2017/p32
