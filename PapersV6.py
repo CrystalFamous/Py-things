@@ -1,9 +1,10 @@
 import webbrowser
-#9618_w21_qp_42 9618_w22_qp_41 -- 9608_s21_qp_42  9608_w20_qp_42  9608_w16_qp_42
+
 #Settings
 Close = True
 Extract3 = False #may/june/2017/p32
 DownloadBool = False #9608/41/M/J/18
+
 if Extract3 or DownloadBool:
     import requests,os
     global pdf_locIN,pdf_locMS,pdf_locQP
@@ -248,7 +249,10 @@ def choosesub(sub):
 def main():
    
     sub = input("Acc,Bus,Eco,Cs,Maths,Physics,Bio,Chem\nOtherwise enter full code: ").lower().replace(" ","")
-    if "_" in sub:
+    if "%" in sub:
+        sub = sub[-18:].strip(".pdf")
+        print(sub)
+    elif "_" in sub:
         extractv2(sub)
     elif sub in ["acc", "1", "accounting"]:
         acc()
